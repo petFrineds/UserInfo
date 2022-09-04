@@ -1,7 +1,12 @@
 package petfriends.userInfo.controller;
 
 import lombok.AllArgsConstructor;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,4 +30,16 @@ public class UserInfoController {
 	public UserInfo requestUserInfo(@RequestParam("id") String id) {
 		return userInfoService.findById(id);
 	}
+
+	@PostMapping("/checkDummy")
+	public ResponseEntity checkDummy(HttpServletRequest request){
+		return new ResponseEntity(HttpStatus.OK);
+	}
+
+	@GetMapping("/checkDummy")
+	public ResponseEntity checkDummyGet(HttpServletRequest request){
+		return new ResponseEntity(HttpStatus.OK);
+	}
+
+
 }
