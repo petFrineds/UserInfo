@@ -5,12 +5,15 @@ petfriends\userInfo\controller\UserInfoController.class
 petfriends\userInfo\dto\UserInfoDto.class
 petfriends\userInfo\dto\PointChanged.class
 petfriends\userInfo\dto\WalkEnded.class
+petfriends\userInfo\repository\UserImageRepository.class
 petfriends\AbstractEvent.class
+petfriends\userInfo\dto\UserInfoResponseDto.class
 petfriends\userInfo\dto\StarScoreGranted.class
 petfriends\userInfo\model\SmsStatus.class
 petfriends\userInfo\model\UserInfo.class
 petfriends\userInfo\security\ResourceServer.class
 petfriends\UserInfoApplication.class
+petfriends\userInfo\model\UserImage.class
 petfriends\AbstractEvent$1.class
 petfriends\userInfo\security\SecurityConfig.class
 petfriends\userInfo\model\WalkingPlace.class

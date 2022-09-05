@@ -19,6 +19,15 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
     @Value("${jwt.secret}")
     private String secretKey;
 
+    private static final String[] WHITELIST = {
+            "/userInfos/signup/**",
+            "/swagger/**",
+            "/swagger-ui.html",
+            "/swagger-resources/**",
+            "/webjars/**",
+            "/v2/api-docs"
+    };
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         super.configure(resources);
@@ -41,11 +50,10 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.cors().and()
                 // 권한 확인이 필요한 요청 정보 등록
+
                 .authorizeRequests()
-                // /h2-console/** 경로는 모든 요청에 대해 허용
-                // .antMatchers("/h2-console/**").permitAll()
-                // /member/user-info 경로는 ADMIN만 접근 가능
-                .antMatchers("/member/user-info").hasAnyAuthority("ADMIN")
+                //swagger 등은 인증하지 않음
+                .antMatchers(WHITELIST).permitAll()
                 // 나머지 요청은 인증만 필요
                 .anyRequest().authenticated()
                 .and()

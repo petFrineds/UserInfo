@@ -1,3 +1,4 @@
+C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\UserInfoResponseDto.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\controller\UserInfoController.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\UserInfoApplication.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\config\KafkaProcessor.java
@@ -9,6 +10,8 @@ C:\workspace\petfriends\UserInfo\src\main\java\petfriends\AbstractEvent.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\UserInfo.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\PointChanged.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\security\ResourceServer.java
+C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\UserImage.java
+C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\repository\UserImageRepository.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\WalkingPlace.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\StarScoreGranted.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\UserInfoDto.java

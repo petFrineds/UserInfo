@@ -2,21 +2,29 @@ package petfriends.userInfo.controller;
 
 import lombok.AllArgsConstructor;
 
+import java.io.IOException;
+import java.util.Optional;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import petfriends.userInfo.dto.UserInfoResponseDto;
+import petfriends.userInfo.model.UserImage;
 import petfriends.userInfo.model.UserInfo;
+import petfriends.userInfo.repository.UserImageRepository;
 import petfriends.userInfo.service.UserInfoService;
 
 @AllArgsConstructor
@@ -25,11 +33,66 @@ import petfriends.userInfo.service.UserInfoService;
 public class UserInfoController {
 
 	private final UserInfoService userInfoService;
+	private final UserImageRepository userImageRepository;
 
 	@GetMapping("/user-info")
 	public UserInfo requestUserInfo(@RequestParam("id") String id) {
 		return userInfoService.findById(id);
 	}
+
+	@PostMapping("/signup")
+	public ResponseEntity<String> signup(@RequestBody UserInfo userInfo) {
+			return ResponseEntity.ok(userInfoService.signup(userInfo));
+	}
+
+	// @GetMapping("/me")
+  //   public ResponseEntity<UserInfoResponseDto> getMyMemberInfo() {
+  //       return ResponseEntity.ok(userInfoService.getMyInfo());
+  //   }
+
+		@GetMapping("/{userId}")
+    public ResponseEntity<UserInfo> getMyUserInfo(@PathVariable String userId) {
+
+			UserInfo userInfo = userInfoService.getMyUserInfo(userId);
+
+			if(userInfo != null){
+				return new ResponseEntity<UserInfo>(userInfo, HttpStatus.OK);
+			}
+			//내용 없을 때
+			return  new ResponseEntity<UserInfo>(userInfo, HttpStatus.NO_CONTENT);
+
+    }
+
+
+		@PostMapping("/image/upload")
+		public Long uploadUserImage(HttpServletRequest request) throws IOException {
+			 	return userInfoService.uploadUserImage(request);
+		}
+
+
+		@GetMapping("/image/{id}")
+		public ResponseEntity<byte[]> downloadUserImage(@PathVariable Long id) {
+					Optional<UserImage> user = userImageRepository.findById(id);
+
+					if(user.isPresent()) {
+
+						UserImage userImage = user.get();
+						HttpHeaders headers = new HttpHeaders();
+							headers.add("Content-Type", userImage.getMimeType());
+							headers.add("Content-Length", String.valueOf(userImage.getUserImage().length));
+						return new ResponseEntity<byte[]>(userImage.getUserImage(), headers, HttpStatus.OK);
+					}
+
+				return null;
+
+		}
+
+
+    @GetMapping("/check/{userId}")
+    public ResponseEntity<UserInfoResponseDto> getMemberInfo(@PathVariable String userId) {
+        return ResponseEntity.ok(userInfoService.getUserInfo(userId));
+    }
+
 
 	@PostMapping("/checkDummy")
 	public ResponseEntity checkDummy(HttpServletRequest request){

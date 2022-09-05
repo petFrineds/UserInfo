@@ -60,4 +60,6 @@ public class UserInfo {
       this.walkCount = this.walkCount == null ? (double)0 : this.walkCount;
   }
 
+
+
 }
