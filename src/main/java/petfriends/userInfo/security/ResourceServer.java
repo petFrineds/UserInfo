@@ -21,6 +21,7 @@ public class ResourceServer extends ResourceServerConfigurerAdapter {
 
     private static final String[] WHITELIST = {
             "/userInfos/signup/**",
+            "/userInfos/check/**",
             "/swagger/**",
             "/swagger-ui.html",
             "/swagger-resources/**",
