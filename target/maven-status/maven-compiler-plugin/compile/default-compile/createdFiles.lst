@@ -1,6 +1,8 @@
 petfriends\PolicyHandler.class
+petfriends\userInfo\dto\UserInfoInterface.class
 petfriends\config\KafkaProcessor.class
 petfriends\userInfo\repository\UserInfoRepository.class
+petfriends\userInfo\controller\UserInfoController.class
 petfriends\userInfo\dto\UserInfoDto.class
 petfriends\userInfo\dto\PointChanged.class
 petfriends\userInfo\dto\WalkEnded.class
@@ -16,4 +18,5 @@ petfriends\userInfo\model\UserImage.class
 petfriends\AbstractEvent$1.class
 petfriends\userInfo\security\SecurityConfig.class
 petfriends\userInfo\model\WalkingPlace.class
+petfriends\userInfo\service\UserInfoService.class
 petfriends\userInfo\model\UserRole.class
