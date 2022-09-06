@@ -19,12 +19,12 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, String>{
 
     // 산책 랭킹
     // @Query(value = "select user_id as userId from user_info order by walk_count desc", nativeQuery = true)
-    @Query(value = "select * from user_info order by walk_count desc", nativeQuery = true)
+    @Query(value = "select * from user_info order by walk_count desc LIMIT 0, 5", nativeQuery = true)
     public List<UserInfo> selectWalkRnk();
 
     // 별점 랭킹
     // @Query(value = "select user_id as userId from user_info order by avg_score desc", nativeQuery = true)
-    @Query(value = "select * from user_info order by avg_score desc", nativeQuery = true)
+    @Query(value = "select * from user_info order by avg_score desc LIMIT 0, 5", nativeQuery = true)
     public List<UserInfo> selectStarRnk();
 
 
