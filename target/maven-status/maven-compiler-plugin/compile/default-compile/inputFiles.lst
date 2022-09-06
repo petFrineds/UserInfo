@@ -14,6 +14,7 @@ C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\UserIma
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\repository\UserImageRepository.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\WalkingPlace.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\StarScoreGranted.java
+C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\UserInfoInterface.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\UserInfoDto.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\service\UserInfoService.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\repository\UserInfoRepository.java

@@ -3,6 +3,7 @@ package petfriends.userInfo.controller;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import petfriends.userInfo.dto.UserInfoInterface;
 import petfriends.userInfo.dto.UserInfoResponseDto;
 import petfriends.userInfo.model.UserImage;
 import petfriends.userInfo.model.UserInfo;
@@ -50,48 +52,83 @@ public class UserInfoController {
   //       return ResponseEntity.ok(userInfoService.getMyInfo());
   //   }
 
-		@GetMapping("/{userId}")
-    public ResponseEntity<UserInfo> getMyUserInfo(@PathVariable String userId) {
+	@GetMapping("/{userId}")
+	public ResponseEntity<UserInfo> getMyUserInfo(@PathVariable String userId) {
 
-			UserInfo userInfo = userInfoService.getMyUserInfo(userId);
+		UserInfo userInfo = userInfoService.getMyUserInfo(userId);
 
-			if(userInfo != null){
-				return new ResponseEntity<UserInfo>(userInfo, HttpStatus.OK);
-			}
-			//내용 없을 때
-			return  new ResponseEntity<UserInfo>(userInfo, HttpStatus.NO_CONTENT);
-
-    }
-
-
-		@PostMapping("/image/upload")
-		public Long uploadUserImage(HttpServletRequest request) throws IOException {
-			 	return userInfoService.uploadUserImage(request);
+		if(userInfo != null){
+			return new ResponseEntity<UserInfo>(userInfo, HttpStatus.OK);
 		}
+		//내용 없을 때
+		return  new ResponseEntity<UserInfo>(userInfo, HttpStatus.NO_CONTENT);
+
+	}
 
 
-		@GetMapping("/image/{id}")
-		public ResponseEntity<byte[]> downloadUserImage(@PathVariable Long id) {
-					Optional<UserImage> user = userImageRepository.findById(id);
+	@PostMapping("/image/upload")
+	public Long uploadUserImage(HttpServletRequest request) throws IOException {
+			return userInfoService.uploadUserImage(request);
+	}
 
-					if(user.isPresent()) {
 
-						UserImage userImage = user.get();
-						HttpHeaders headers = new HttpHeaders();
-							headers.add("Content-Type", userImage.getMimeType());
-							headers.add("Content-Length", String.valueOf(userImage.getUserImage().length));
-						return new ResponseEntity<byte[]>(userImage.getUserImage(), headers, HttpStatus.OK);
-					}
+	@GetMapping("/image/{id}")
+	public ResponseEntity<byte[]> downloadUserImage(@PathVariable Long id) {
+				Optional<UserImage> user = userImageRepository.findById(id);
 
-				return null;
+				if(user.isPresent()) {
 
+					UserImage userImage = user.get();
+					HttpHeaders headers = new HttpHeaders();
+						headers.add("Content-Type", userImage.getMimeType());
+						headers.add("Content-Length", String.valueOf(userImage.getUserImage().length));
+					return new ResponseEntity<byte[]>(userImage.getUserImage(), headers, HttpStatus.OK);
+				}
+
+			return null;
+
+	}
+
+
+	@GetMapping("/check/{userId}")
+	public ResponseEntity<UserInfoResponseDto> getMemberInfo(@PathVariable String userId) {
+			return ResponseEntity.ok(userInfoService.getUserInfo(userId));
+	}
+
+  /**
+	 * 산책 랭킹
+	 * @return
+	 */
+	@GetMapping("/selectWalkRnk")
+	public ResponseEntity<List<UserInfoInterface>> selectWalkRnk() {
+
+		List<UserInfoInterface> userInfoInterfaces = userInfoService.selectWalkRnk();
+
+		if(userInfoInterfaces != null){
+			return new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.OK);
 		}
+		//내용 없을 때
+		return  new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.NO_CONTENT);
 
+  }
 
-    @GetMapping("/check/{userId}")
-    public ResponseEntity<UserInfoResponseDto> getMemberInfo(@PathVariable String userId) {
-        return ResponseEntity.ok(userInfoService.getUserInfo(userId));
-    }
+	/**
+	 * 별점 랭킹
+	 * @return
+	 */
+	@GetMapping("/selectStarRnk")
+	public ResponseEntity<List<UserInfoInterface>> selectStarRnk() {
+
+		List<UserInfoInterface> userInfoInterfaces = userInfoService.selectStarRnk();
+
+		if(userInfoInterfaces != null){
+			return new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.OK);
+		}
+		//내용 없을 때
+		return  new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.NO_CONTENT);
+
+  }
+
 
 
 	@PostMapping("/checkDummy")

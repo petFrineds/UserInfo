@@ -1,6 +1,7 @@
 package petfriends.userInfo.service;
 
 import petfriends.userInfo.dto.UserInfoDto;
+import petfriends.userInfo.dto.UserInfoInterface;
 import petfriends.userInfo.dto.UserInfoResponseDto;
 import petfriends.userInfo.model.UserImage;
 import petfriends.userInfo.model.UserInfo;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -106,6 +108,24 @@ public class UserInfoService {
             userInfoRepository.save(userInfo);
 
             return imageId;
+    }
+
+
+    /**
+     * 산책 랭킹
+     * @return
+     */
+    public List<UserInfoInterface> selectWalkRnk() {
+
+        return userInfoRepository.selectWalkRnk();
+    }
+
+    /**
+     * 별점 랭킹
+     * @return
+     */
+    public List<UserInfoInterface> selectStarRnk() {
+        return userInfoRepository.selectStarRnk();
     }
 
 
