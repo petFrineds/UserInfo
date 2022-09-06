@@ -8,11 +8,8 @@ import org.springframework.context.ApplicationContext;
 
 import petfriends.config.KafkaProcessor;
 
-// import petfriends.config.KafkaProcessor;
-
-
 @SpringBootApplication
-// @EnableBinding(KafkaProcessor.class)
+@EnableBinding(KafkaProcessor.class)
 @EnableFeignClients
 public class UserInfoApplication {
     protected static ApplicationContext applicationContext;
