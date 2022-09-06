@@ -100,15 +100,15 @@ public class UserInfoController {
 	 * @return
 	 */
 	@GetMapping("/selectWalkRnk")
-	public ResponseEntity<List<UserInfoInterface>> selectWalkRnk() {
+	public ResponseEntity<List<UserInfo>> selectWalkRnk() {
 
-		List<UserInfoInterface> userInfoInterfaces = userInfoService.selectWalkRnk();
+		List<UserInfo> userInfoInterfaces = userInfoService.selectWalkRnk();
 
 		if(userInfoInterfaces != null){
-			return new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.OK);
+			return new ResponseEntity<List<UserInfo>>(userInfoInterfaces, HttpStatus.OK);
 		}
 		//내용 없을 때
-		return  new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.NO_CONTENT);
+		return  new ResponseEntity<List<UserInfo>>(userInfoInterfaces, HttpStatus.NO_CONTENT);
 
   }
 
@@ -117,15 +117,15 @@ public class UserInfoController {
 	 * @return
 	 */
 	@GetMapping("/selectStarRnk")
-	public ResponseEntity<List<UserInfoInterface>> selectStarRnk() {
+	public ResponseEntity<List<UserInfo>> selectStarRnk() {
 
-		List<UserInfoInterface> userInfoInterfaces = userInfoService.selectStarRnk();
+		List<UserInfo> userInfoInterfaces = userInfoService.selectStarRnk();
 
 		if(userInfoInterfaces != null){
-			return new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.OK);
+			return new ResponseEntity<List<UserInfo>>(userInfoInterfaces, HttpStatus.OK);
 		}
 		//내용 없을 때
-		return  new ResponseEntity<List<UserInfoInterface>>(userInfoInterfaces, HttpStatus.NO_CONTENT);
+		return  new ResponseEntity<List<UserInfo>>(userInfoInterfaces, HttpStatus.NO_CONTENT);
 
   }
 

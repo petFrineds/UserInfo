@@ -2,6 +2,7 @@ C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\UserInfoR
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\controller\UserInfoController.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\UserInfoApplication.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\config\KafkaProcessor.java
+C:\workspace\petfriends\UserInfo\src\main\java\petfriends\config\SwaggerConfig.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\PolicyHandler.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\SmsStatus.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\WalkEnded.java
@@ -14,6 +15,7 @@ C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\UserIma
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\repository\UserImageRepository.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\model\WalkingPlace.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\StarScoreGranted.java
+C:\workspace\petfriends\UserInfo\src\main\java\petfriends\config\WebConfig.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\UserInfoInterface.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\dto\UserInfoDto.java
 C:\workspace\petfriends\UserInfo\src\main\java\petfriends\userInfo\service\UserInfoService.java

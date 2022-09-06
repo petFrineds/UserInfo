@@ -115,7 +115,7 @@ public class UserInfoService {
      * 산책 랭킹
      * @return
      */
-    public List<UserInfoInterface> selectWalkRnk() {
+    public List<UserInfo> selectWalkRnk() {
 
         return userInfoRepository.selectWalkRnk();
     }
@@ -124,7 +124,7 @@ public class UserInfoService {
      * 별점 랭킹
      * @return
      */
-    public List<UserInfoInterface> selectStarRnk() {
+    public List<UserInfo> selectStarRnk() {
         return userInfoRepository.selectStarRnk();
     }
 

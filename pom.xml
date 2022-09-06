@@ -104,6 +104,7 @@
 			</exclusions>
 		</dependency>
 
+		<!-- jwt start -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
@@ -121,6 +122,7 @@
 			<artifactId>spring-security-jwt</artifactId>
 			<version>1.0.10.RELEASE</version>
 		</dependency>
+		<!-- jwt end -->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
