@@ -92,7 +92,9 @@ public class UserInfoService {
 
             LocalDateTime current = LocalDateTime.now();
 
-            UserInfo userInfo = new UserInfo();
+            // UserInfo userInfo = new UserInfo();
+            Optional<UserInfo> userInfoOptional = userInfoRepository.findByUserId(userId);
+            UserInfo userInfo = userInfoOptional.get();
             userInfo.setMimeType(file.getContentType());
             userInfo.setOriginalName(file.getOriginalFilename());
             userInfo.setUserImage(file.getBytes());
