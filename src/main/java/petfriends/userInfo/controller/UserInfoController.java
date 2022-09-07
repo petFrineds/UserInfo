@@ -27,6 +27,7 @@ import petfriends.userInfo.dto.UserInfoResponseDto;
 import petfriends.userInfo.model.UserImage;
 import petfriends.userInfo.model.UserInfo;
 import petfriends.userInfo.repository.UserImageRepository;
+import petfriends.userInfo.repository.UserInfoRepository;
 import petfriends.userInfo.service.UserInfoService;
 
 @AllArgsConstructor
@@ -35,7 +36,7 @@ import petfriends.userInfo.service.UserInfoService;
 public class UserInfoController {
 
 	private final UserInfoService userInfoService;
-	private final UserImageRepository userImageRepository;
+	private final UserInfoRepository userInfoRepository;
 
 	@GetMapping("/user-info")
 	public UserInfo requestUserInfo(@RequestParam("id") String id) {
@@ -67,22 +68,22 @@ public class UserInfoController {
 
 
 	@PostMapping("/image/upload")
-	public Long uploadUserImage(HttpServletRequest request) throws IOException {
+	public String uploadUserImage(HttpServletRequest request) throws IOException {
 			return userInfoService.uploadUserImage(request);
 	}
 
 
-	@GetMapping("/image/{id}")
-	public ResponseEntity<byte[]> downloadUserImage(@PathVariable Long id) {
-				Optional<UserImage> user = userImageRepository.findById(id);
+	@GetMapping("/image/{userId}")
+	public ResponseEntity<byte[]> downloadUserImage(@PathVariable String userId) {
+				Optional<UserInfo> user = userInfoRepository.findById(userId);
 
 				if(user.isPresent()) {
 
-					UserImage userImage = user.get();
+					UserInfo userInfo = user.get();
 					HttpHeaders headers = new HttpHeaders();
-						headers.add("Content-Type", userImage.getMimeType());
-						headers.add("Content-Length", String.valueOf(userImage.getUserImage().length));
-					return new ResponseEntity<byte[]>(userImage.getUserImage(), headers, HttpStatus.OK);
+						headers.add("Content-Type", userInfo.getMimeType());
+						headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
+					return new ResponseEntity<byte[]>(userInfo.getUserImage(), headers, HttpStatus.OK);
 				}
 
 			return null;
@@ -145,3 +146,24 @@ public class UserInfoController {
 
 
 }
+
+
+
+
+
+// @GetMapping("/image/{id}")
+// 	public ResponseEntity<byte[]> downloadUserImage(@PathVariable Long id) {
+// 				Optional<UserImage> user = userImageRepository.findById(id);
+
+// 				if(user.isPresent()) {
+
+// 					UserImage userImage = user.get();
+// 					HttpHeaders headers = new HttpHeaders();
+// 						headers.add("Content-Type", userImage.getMimeType());
+// 						headers.add("Content-Length", String.valueOf(userImage.getUserImage().length));
+// 					return new ResponseEntity<byte[]>(userImage.getUserImage(), headers, HttpStatus.OK);
+// 				}
+
+// 			return null;
+
+// 	}

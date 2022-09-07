@@ -82,7 +82,7 @@ public class UserInfoService {
 		 * @return
 		 * @throws IOException
 		 */
-		public Long uploadUserImage(HttpServletRequest request) throws IOException{
+		public String uploadUserImage(HttpServletRequest request) throws IOException{
             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             MultipartFile file = multipartRequest.getFile("file");
             String userId = multipartRequest.getParameter("user_id");
@@ -92,22 +92,22 @@ public class UserInfoService {
 
             LocalDateTime current = LocalDateTime.now();
 
-            UserImage userImage = new UserImage();
-            userImage.setMimeType(file.getContentType());
-            userImage.setOriginalName(file.getOriginalFilename());
-            userImage.setUserImage(file.getBytes());
-            userImage.setUserId(userId);
-            userImage.setCreateDate(java.sql.Timestamp.valueOf(current));
+            UserInfo userInfo = new UserInfo();
+            userInfo.setMimeType(file.getContentType());
+            userInfo.setOriginalName(file.getOriginalFilename());
+            userInfo.setUserImage(file.getBytes());
+            userInfo.setUserId(userId);
+            // userInfo.setCreateDate(java.sql.Timestamp.valueOf(current));
 
-            UserImage saveUuserImg =  userImageRepository.save(userImage);
-            Long imageId = saveUuserImg.getId();
+            UserInfo saveUser =  userInfoRepository.save(userInfo);
+            String saveUserId = saveUser.getUserId();
 
-            Optional<UserInfo> userInfoOptional = userInfoRepository.findByUserId(userId);
-            UserInfo userInfo = userInfoOptional.get();
-            userInfo.setImageId(imageId);
-            userInfoRepository.save(userInfo);
+            // Optional<UserInfo> userInfoOptional = userInfoRepository.findByUserId(userId);
+            // UserInfo userInfo = userInfoOptional.get();
+            // userInfo.setImageId(imageId);
+            // userInfoRepository.save(userInfo);
 
-            return imageId;
+            return saveUserId;
     }
 
 
