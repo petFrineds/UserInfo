@@ -3,6 +3,7 @@ package petfriends.userInfo.controller;
 import lombok.AllArgsConstructor;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,8 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import petfriends.userInfo.dto.UserImageResponseDto;
 import petfriends.userInfo.dto.UserInfoInterface;
 import petfriends.userInfo.dto.UserInfoResponseDto;
 import petfriends.userInfo.model.UserImage;
@@ -73,29 +76,21 @@ public class UserInfoController {
 	}
 
 
-	@GetMapping("/image/{userId}")
-	public ResponseEntity<byte[]> downloadUserImage(@PathVariable String userId) {
+
+	@GetMapping(value = "/image/{userId}")
+	public ResponseEntity <HashMap<String, Object>> downloadUserImage(@PathVariable String userId) {
 				Optional<UserInfo> user = userInfoRepository.findById(userId);
 
-				// if(user.isPresent()) {
-
-				// 	UserInfo userInfo = user.get();
-				// 	HttpHeaders headers = new HttpHeaders();
-				// 		headers.add("Content-Type", userInfo.getMimeType());
-				// 		headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
-				// 	return new ResponseEntity<byte[]>(userInfo.getUserImage(), headers, HttpStatus.OK);
-				// }
-
 				if(user.isPresent()) {
-
 					UserInfo userInfo = user.get();
-					// HttpHeaders headers = new HttpHeaders();
-					// 	headers.add("Content-Type", userInfo.getMimeType());
-					// 	headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
-					return new ResponseEntity(userInfo.getUserImage(), HttpStatus.OK);
+
+					HashMap<String, Object> resultMap = new HashMap<>();
+					resultMap.put("userimage", userInfo.getUserImage());
+
+					return new ResponseEntity<HashMap<String, Object>>(resultMap, HttpStatus.OK);
 				}
 
-			return null;
+				 return null;
 
 	}
 
@@ -176,3 +171,37 @@ public class UserInfoController {
 // 			return null;
 
 // 	}
+
+
+
+// @GetMapping(value = "/image/{userId}")
+	// public ResponseEntity <UserImageResponseDto> downloadUserImage(@PathVariable String userId) {
+	// 			// Optional<UserInfo> user = userInfoService.getMyUserInfo(userId);
+
+	// 			UserImageResponseDto user =  userInfoRepository.findByUserId(userId)
+	// 																		.map(UserImageResponseDto::of)
+	// 																		.orElseThrow(() -> new RuntimeException("유저 이미지 정보가 없습니다."));
+
+	// 					// UserInfo user = userInfoService.getMyUserInfo(userId);
+	// 			// if(user.isPresent()) {
+
+	// 			// 	UserInfo userInfo = user.get();
+	// 			// 	HttpHeaders headers = new HttpHeaders();
+	// 			// 		headers.add("Content-Type", userInfo.getMimeType());
+	// 			// 		headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
+	// 			// 	return new ResponseEntity<byte[]>(userInfo.getUserImage(), headers, HttpStatus.OK);
+	// 			// }
+
+	// 			// if(user.isPresent()) {
+
+	// 				// UserInfo userInfo = user.get();
+	// 				// HttpHeaders headers = new HttpHeaders();
+	// 				// 	headers.add("Content-Type", userInfo.getMimeType());
+	// 				// 	headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
+	// 				// return new ResponseEntity<byte[]>(userInfo.getUserImage(), HttpStatus.OK);
+	// 				return new ResponseEntity<UserImageResponseDto>(user, HttpStatus.OK);
+	// 			// }
+
+	// 		// return null;
+
+	// }

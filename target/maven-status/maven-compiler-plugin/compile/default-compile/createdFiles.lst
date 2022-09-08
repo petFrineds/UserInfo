@@ -10,6 +10,7 @@ petfriends\AbstractEvent$1.class
 petfriends\userInfo\security\SecurityConfig.class
 petfriends\userInfo\model\WalkingPlace.class
 petfriends\userInfo\model\UserRole.class
+petfriends\userInfo\dto\UserImageResponseDto.class
 petfriends\userInfo\controller\UserInfoController.class
 petfriends\config\WebConfig.class
 petfriends\userInfo\dto\PointChanged.class
