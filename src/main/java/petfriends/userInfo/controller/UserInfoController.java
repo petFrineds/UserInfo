@@ -77,13 +77,22 @@ public class UserInfoController {
 	public ResponseEntity<byte[]> downloadUserImage(@PathVariable String userId) {
 				Optional<UserInfo> user = userInfoRepository.findById(userId);
 
+				// if(user.isPresent()) {
+
+				// 	UserInfo userInfo = user.get();
+				// 	HttpHeaders headers = new HttpHeaders();
+				// 		headers.add("Content-Type", userInfo.getMimeType());
+				// 		headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
+				// 	return new ResponseEntity<byte[]>(userInfo.getUserImage(), headers, HttpStatus.OK);
+				// }
+
 				if(user.isPresent()) {
 
 					UserInfo userInfo = user.get();
-					HttpHeaders headers = new HttpHeaders();
-						headers.add("Content-Type", userInfo.getMimeType());
-						headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
-					return new ResponseEntity<byte[]>(userInfo.getUserImage(), headers, HttpStatus.OK);
+					// HttpHeaders headers = new HttpHeaders();
+					// 	headers.add("Content-Type", userInfo.getMimeType());
+					// 	headers.add("Content-Length", String.valueOf(userInfo.getUserImage().length));
+					return new ResponseEntity(userInfo.getUserImage(), HttpStatus.OK);
 				}
 
 			return null;

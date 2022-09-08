@@ -58,7 +58,7 @@ public class PolicyHandler{
             Optional<UserInfo> userInfoOptional = userInfoRepository.findByUserId(starScoreGranted.getDogWalkerId()); //도그위커의 별점을 갱신한다
             UserInfo userInfo = userInfoOptional.get();
             userInfo.setWalkCount(userInfo.getWalkCount() + 1); // 산책 횟수 증가
-            userInfo.setAvgScore(starScoreGranted.getStarScore() / userInfo.getWalkCount()); // 평점 갱신
+            userInfo.setAvgScore((double) Math.round(starScoreGranted.getStarScore() / userInfo.getWalkCount())); // 평점 갱신
             userInfoRepository.save(userInfo);
 
         }
