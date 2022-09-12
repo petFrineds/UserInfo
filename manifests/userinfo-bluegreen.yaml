@@ -51,17 +51,16 @@ spec:
       autoPromotionEnabled: false
 
 
----
 
+
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: userinfo-backend
-  annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: "/userinfoes"
 spec:
   selector:
-    app:  userinfo-backend-bluegreen
+    app:  userinfo-backend
   type: NodePort
   ports:
     - port: 8080
@@ -74,11 +73,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: userinfo-backend-preview
-  annotations:
-    alb.ingress.kubernetes.io/healthcheck-path: "/userinfoes"
 spec:
   selector:
-    app:  userinfo-backend-bluegreen
+    app:  userinfo-backend
   type: NodePort
   ports:
     - port: 8080
