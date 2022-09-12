@@ -86,6 +86,7 @@ public class UserInfoController {
 
 					HashMap<String, Object> resultMap = new HashMap<>();
 					resultMap.put("userimage", userInfo.getUserImage());
+					resultMap.put("bluegreentest", "bluegreentest");
 
 					return new ResponseEntity<HashMap<String, Object>>(resultMap, HttpStatus.OK);
 				}
