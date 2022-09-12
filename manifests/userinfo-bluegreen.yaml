@@ -50,9 +50,6 @@ spec:
       previewService: userinfo-backend-preview
       autoPromotionEnabled: false
 
-
-
-
 ---
 apiVersion: v1
 kind: Service
