@@ -1,3 +1,19 @@
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: userinfo-backend
+#   annotations:
+#     alb.ingress.kubernetes.io/healthcheck-path: "/userinfoes"
+# spec:
+#   selector:
+#     app:  userinfo-backend
+#   type: NodePort
+#   ports:
+#     - port: 8080
+#       targetPort: 8080
+#       protocol: TCP
+
 ---
 apiVersion: v1
 kind: Service
@@ -7,9 +23,27 @@ metadata:
     alb.ingress.kubernetes.io/healthcheck-path: "/userinfoes"
 spec:
   selector:
-    app:  userinfo-backend
+    app:  userinfo-backend-bluegreen
   type: NodePort
   ports:
     - port: 8080
       targetPort: 8080
+      nodePort: 30083
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: userinfo-backend-preview
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: "/userinfoes"
+spec:
+  selector:
+    app:  userinfo-backend-bluegreen
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort : 30084
       protocol: TCP

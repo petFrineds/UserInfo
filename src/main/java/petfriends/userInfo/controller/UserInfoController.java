@@ -136,17 +136,17 @@ public class UserInfoController {
 
 
 
-	@PostMapping("/checkDummy")
-	public ResponseEntity checkDummy(HttpServletRequest request){
-		System.out.println("@@@@@@@@@@@@@@@@@@@@checkDummy@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		return new ResponseEntity(HttpStatus.OK);
-	}
+	// @PostMapping("/checkDummy")
+	// public ResponseEntity checkDummy(HttpServletRequest request){
+	// 	System.out.println("@@@@@@@@@@@@@@@@@@@@checkDummy@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	// 	return new ResponseEntity(HttpStatus.OK);
+	// }
 
-	@GetMapping("/checkDummy")
-	public ResponseEntity checkDummyGet(HttpServletRequest request){
-		System.out.println("@@@@@@@@@@@@@@@@@@@@checkDummyGet@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		return new ResponseEntity(HttpStatus.OK);
-	}
+	// @GetMapping("/checkDummy")
+	// public ResponseEntity checkDummyGet(HttpServletRequest request){
+	// 	System.out.println("@@@@@@@@@@@@@@@@@@@@checkDummyGet@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+	// 	return new ResponseEntity(HttpStatus.OK);
+	// }
 
 
 }
